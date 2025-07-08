@@ -13,7 +13,7 @@ A fully decentralized raffle system powered by Chainlink VRF v2.5 for verifiable
 - **Smart Contracts**: Solidity 0.8.19
 - **Oracles**: 
   - Chainlink VRF v2.5 (Randomness)
-  - Chainlink Automation (Draw triggers)
+  - Chainlink Automation (Custom logic)
 - **Testing**: Foundry 
 
 ## 🚀 Quick Start
