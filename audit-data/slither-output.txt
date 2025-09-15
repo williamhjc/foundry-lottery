@@ -1,0 +1,78 @@
+forge clean' running (wd: /Users/jericho/project/web3/solidity/foundry-lottery)
+'forge config --json' running
+'forge build --build-info --skip */test/** */script/** --force' running (wd: /Users/jericho/project/web3/solidity/foundry-lottery)
+INFO:Detectors:
+Reentrancy in Raffle.performUpkeep(bytes) (src/Raffle.sol#100-125):
+        External calls:
+        - requestId = s_vrfCoordinator.requestRandomWords(VRFV2PlusClient.RandomWordsRequest({keyHash:i_gasLane,subId:i_subscriptionId,requestConfirmations:REQUEST_CONFIRMATIONS,callbackGasLimit:i_callbackGasLimit,numWords:NUM_WORDS,extraArgs:VRFV2PlusClient._argsToBytes(VRFV2PlusClient.ExtraArgsV1({nativePayment:false}))})) (src/Raffle.sol#110-122)
+        Event emitted after the call(s):
+        - RequestedRaffleWinner(requestId) (src/Raffle.sol#124)
+Reference: https://github.com/crytic/slither/wiki/Detector-Documentation#reentrancy-vulnerabilities-3
+INFO:Detectors:
+Raffle.checkUpkeep(bytes) (src/Raffle.sol#86-98) uses timestamp for comparisons
+        Dangerous comparisons:
+        - upkeepNeeded = (block.timestamp - s_lastTimeStamp) > i_interval (src/Raffle.sol#92)
+        - upkeepNeeded = (upkeepNeeded && isOpen && hasBalance && hasPlayers) (src/Raffle.sol#96)
+Reference: https://github.com/crytic/slither/wiki/Detector-Documentation#block-timestamp
+INFO:Detectors:
+3 different versions of Solidity are used:
+        - Version constraint ^0.8.0 is used by:
+                -^0.8.0 (lib/chainlink-brownie-contracts/contracts/src/v0.8/interfaces/AutomationCompatibleInterface.sol#2)
+                -^0.8.0 (lib/chainlink-brownie-contracts/contracts/src/v0.8/shared/access/ConfirmedOwner.sol#2)
+                -^0.8.0 (lib/chainlink-brownie-contracts/contracts/src/v0.8/shared/access/ConfirmedOwnerWithProposal.sol#2)
+                -^0.8.0 (lib/chainlink-brownie-contracts/contracts/src/v0.8/shared/interfaces/IOwnable.sol#2)
+                -^0.8.0 (lib/chainlink-brownie-contracts/contracts/src/v0.8/vrf/dev/interfaces/IVRFCoordinatorV2Plus.sol#2)
+                -^0.8.0 (lib/chainlink-brownie-contracts/contracts/src/v0.8/vrf/dev/interfaces/IVRFMigratableConsumerV2Plus.sol#2)
+                -^0.8.0 (lib/chainlink-brownie-contracts/contracts/src/v0.8/vrf/dev/interfaces/IVRFSubscriptionV2Plus.sol#2)
+        - Version constraint ^0.8.4 is used by:
+                -^0.8.4 (lib/chainlink-brownie-contracts/contracts/src/v0.8/vrf/dev/VRFConsumerBaseV2Plus.sol#2)
+                -^0.8.4 (lib/chainlink-brownie-contracts/contracts/src/v0.8/vrf/dev/libraries/VRFV2PlusClient.sol#2)
+        - Version constraint 0.8.19 is used by:
+                -0.8.19 (src/Raffle.sol#2)
+Reference: https://github.com/crytic/slither/wiki/Detector-Documentation#different-pragma-directives-are-used
+INFO:Detectors:
+Version constraint ^0.8.0 contains known severe issues (https://solidity.readthedocs.io/en/latest/bugs.html)
+        - FullInlinerNonExpressionSplitArgumentEvaluationOrder
+        - MissingSideEffectsOnSelectorAccess
+        - AbiReencodingHeadOverflowWithStaticArrayCleanup
+        - DirtyBytesArrayToStorage
+        - DataLocationChangeInInternalOverride
+        - NestedCalldataArrayAbiReencodingSizeValidation
+        - SignedImmutables
+        - ABIDecodeTwoDimensionalArrayMemory
+        - KeccakCaching.
+It is used by:
+        - ^0.8.0 (lib/chainlink-brownie-contracts/contracts/src/v0.8/interfaces/AutomationCompatibleInterface.sol#2)
+        - ^0.8.0 (lib/chainlink-brownie-contracts/contracts/src/v0.8/shared/access/ConfirmedOwner.sol#2)
+        - ^0.8.0 (lib/chainlink-brownie-contracts/contracts/src/v0.8/shared/access/ConfirmedOwnerWithProposal.sol#2)
+        - ^0.8.0 (lib/chainlink-brownie-contracts/contracts/src/v0.8/shared/interfaces/IOwnable.sol#2)
+        - ^0.8.0 (lib/chainlink-brownie-contracts/contracts/src/v0.8/vrf/dev/interfaces/IVRFCoordinatorV2Plus.sol#2)
+        - ^0.8.0 (lib/chainlink-brownie-contracts/contracts/src/v0.8/vrf/dev/interfaces/IVRFMigratableConsumerV2Plus.sol#2)
+        - ^0.8.0 (lib/chainlink-brownie-contracts/contracts/src/v0.8/vrf/dev/interfaces/IVRFSubscriptionV2Plus.sol#2)
+Version constraint ^0.8.4 contains known severe issues (https://solidity.readthedocs.io/en/latest/bugs.html)
+        - FullInlinerNonExpressionSplitArgumentEvaluationOrder
+        - MissingSideEffectsOnSelectorAccess
+        - AbiReencodingHeadOverflowWithStaticArrayCleanup
+        - DirtyBytesArrayToStorage
+        - DataLocationChangeInInternalOverride
+        - NestedCalldataArrayAbiReencodingSizeValidation
+        - SignedImmutables.
+It is used by:
+        - ^0.8.4 (lib/chainlink-brownie-contracts/contracts/src/v0.8/vrf/dev/VRFConsumerBaseV2Plus.sol#2)
+        - ^0.8.4 (lib/chainlink-brownie-contracts/contracts/src/v0.8/vrf/dev/libraries/VRFV2PlusClient.sol#2)
+Version constraint 0.8.19 contains known severe issues (https://solidity.readthedocs.io/en/latest/bugs.html)
+        - VerbatimInvalidDeduplication
+        - FullInlinerNonExpressionSplitArgumentEvaluationOrder
+        - MissingSideEffectsOnSelectorAccess.
+It is used by:
+        - 0.8.19 (src/Raffle.sol#2)
+Reference: https://github.com/crytic/slither/wiki/Detector-Documentation#incorrect-versions-of-solidity
+INFO:Detectors:
+Low level call in Raffle.fulfillRandomWords(uint256,uint256[]) (src/Raffle.sol#128-145):
+        - (success,None) = recentWinner.call{value: address(this).balance}() (src/Raffle.sol#141)
+Reference: https://github.com/crytic/slither/wiki/Detector-Documentation#low-level-calls
+INFO:Detectors:
+Parameter VRFConsumerBaseV2Plus.setCoordinator(address)._vrfCoordinator (lib/chainlink-brownie-contracts/contracts/src/v0.8/vrf/dev/VRFConsumerBaseV2Plus.sol#150) is not in mixedCase
+Variable VRFConsumerBaseV2Plus.s_vrfCoordinator (lib/chainlink-brownie-contracts/contracts/src/v0.8/vrf/dev/VRFConsumerBaseV2Plus.sol#108) is not in mixedCase
+Event Raffle.winnerPicked(address) (src/Raffle.sol#42) is not in CapWords
+Reference: https://github.com/crytic/slither/wiki/Detector-Documentation#conformance-to-solidity-naming-conventions
