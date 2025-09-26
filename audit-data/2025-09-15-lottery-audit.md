@@ -34,14 +34,14 @@ A fully decentralized raffle system powered by Chainlink VRF v2.5 for verifiable
 | High     | 1                      |
 | Medium   | 0                      |
 | Low      | 0                      |
-| Info     | 8                      |
+| Info     | 1                      |
 | Total    | 0                      |
 
 # Findings
 
 #### High
 
-### [H-4] Malicious winner can forever halt the raffle
+### [H-1] Malicious winner can forever halt the raffle
 
 **Description:** Once the winner is chosen, the `fulfillRandomWords` function sends the prize to the the corresponding address with an external call to the winner account.
 
