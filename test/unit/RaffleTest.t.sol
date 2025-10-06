@@ -272,4 +272,24 @@ contract RaffleTest is Test, CodeConstants {
         assert(winnerBalance == startingBalance + prize);
         assert(endingTimeStamp > startingTimeStamp);
     }
+
+    function testGetNumWords() public {
+        assert(raffle.getNumWords() == 1);
+    }
+
+    function testGetRequestConfirmations() public {
+        assert(raffle.getRequestConfirmations() == 3);
+    }
+
+    function testGetInterval() public {
+        assert(raffle.getInterval() == 30);
+    }
+
+    function testGetEntranceFee() public {
+        assert(raffle.getEntranceFee() == 0.01 ether);
+    }
+
+    function testGetNumberOfPlayers() public raffleEntered skipFork {
+        assert(raffle.getNumberOfPlayers() == 1);
+    }
 }
